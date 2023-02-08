@@ -64,6 +64,28 @@ public class TimeComplexityType {
         return count;
     }
 
-    
+    /**
+     * 平方阶-冒泡排序
+     * 以冒泡排序为例，外层循环n-1次，内层循环n-1，n-2，n-3，...，2，1次，平均为n/2次，因此时间复杂度为O(n²)
+     * @param nums
+     * @return
+     */
+    public int quadraticBubbleSort(int[] nums) {
+        int count = 0; // 计数器
+        // 外循环：待排序元素数量为 n-1，n-2，..，1
+        for(int i = nums.length - 1 ;i > 0; i--) {
+            // 内循环：冒泡操作
+            for(int j = 0; j < i; j++) {
+                if(nums[j] > nums[j + 1]) {
+                    // 交换nums[j] 与 nums[j + 1]
+                    int temp = nums[j];
+                    nums[j] = nums[j + 1];
+                    nums[j + 1] = temp;
+                    count += 3; // 元素交换包含 3 个单元操作
+                }
+            }
+        }
+        return count;
+    }
 
 }
