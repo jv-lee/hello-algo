@@ -119,4 +119,32 @@ public class TimeComplexityType {
         return expRecur(n - 1) + expRecur(n - 1) + 1;
     }
 
+    /**
+     * 对数阶-循环实现
+     * 对数阶与指数阶正好相反，后者反映“每轮增加到两倍的情况”，而前者反映“每轮缩减到一半的情况”。对数阶仅次于常数阶，时间增长得很慢，是理想的时间复杂度。
+     * 对数阶常出现于「二分查找」和「分治算法」中，体现“一分为多”、“化繁为简”的算法思想。
+     * 设输入数据大小为n，由于每轮缩减到一半，因此循环次数是log2n，即2ⁿ的反函数。
+     * @param n
+     * @return
+     */
+    public int logarithmic(float n) {
+        int count = 0;
+        while(n > 1) {
+            n = n / 2;
+            count++;
+        }
+        return count;
+    }
+
+    /**
+     * 对数阶-递归实现
+     * 与指数阶类似，对数阶也常出现于递归函数。以下代码形成了一个高度为log2n的递归树。
+     * @param n
+     * @return
+     */
+    public int logRecur(float n) {
+        if (n <= 1) return 0;
+        return logRecur(n / 2) + 1;
+    }
+
 }
