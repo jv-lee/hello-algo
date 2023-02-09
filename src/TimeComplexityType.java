@@ -88,4 +88,35 @@ public class TimeComplexityType {
         return count;
     }
 
+    /**
+     * 指数阶-循环实现
+     * note1: 生物学科中的“细胞分裂”既是指数阶增长：初始状态为1个细胞，分裂一轮后为2个细胞，分裂两轮后为4个，...，分裂n轮后有2ⁿ
+     * note2: 指数阶增长得非常快，在实际应用中一般是不能被接受的。若一个问题使用「暴力枚举」求解的时间复杂度是O(2ⁿ)，那么一般都需要使用「动态规划」或「贪心算法」等算法来求解。
+     * @param n
+     * @return
+     */
+    public int exponential(int n) {
+        int count = 0, base = 1;
+        // cell 每轮一分为二，形成数列 1，2，4，8，...，2^(n-1)
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < base; j++) {
+                count++;
+            }
+            base *= 2;
+        }
+        // count = 1 + 2 + 4 + 8 + .. + 2^(n-1) = 2^n - 1
+        return count;
+    }
+
+    /**
+     * 指数阶-递归实现
+     * 在实际算法中，指数阶常出现于递归函数。例如以下代码，不断地一分为二，分裂n次后停止。
+     * @param n
+     * @return
+     */
+    public int expRecur(int n) {
+        if (n == 1) return 1;
+        return expRecur(n - 1) + expRecur(n - 1) + 1;
+    }
+
 }
