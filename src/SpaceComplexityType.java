@@ -64,4 +64,15 @@ public class SpaceComplexityType {
         }
     }
 
+    /**
+     * 线性阶 - O(n) 循环实现
+     * @param n
+     */
+    public void linearRecur(int n) {
+        System.out.println("递归 n = " + n);
+        if(n == 1) return;
+        linearRecur(n - 1);
+    }
+
+
 }
