@@ -1,3 +1,8 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * 空间复杂度类型
  * 统计 算法使用内存空间随着数据量变大时的增长趋势。这个概念与时间复杂度很类似。
@@ -20,7 +25,7 @@ public class SpaceComplexityType {
      * @param n
      */
     public void constant(int n) {
-        // 常量、变量、对象占用空间O(1)空间
+        // 常量、变量、对象占用 O(1) 空间
         final int a = 0;
         int b = 0;
         int[] nums = new int[10000];
@@ -33,6 +38,29 @@ public class SpaceComplexityType {
         // 循环中的函数占用O(1)空间
         for (int i = 0; i < n; i++) {
             // function();
+        }
+    }
+
+    /**
+     * 线性阶 - O(n)
+     * 线性阶常见于元素数量与n成正比的数组、链表、栈、队列等。
+     * 
+     * @param n
+     */
+    public void linear(int n) {
+        // 长度为 n 的数组占用 O(n) 空间
+        int[] nums = new int[n];
+
+        // 长度为 n 的列表占用 O(n) 空间
+        List<ListNode> nodes = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            nodes.add(new ListNode(i));
+        }
+
+        // 长度为 n 的哈希表占用 O(n) 空间
+        Map<Integer, String> map = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            map.put(i, String.valueOf(i));
         }
     }
 
