@@ -18,7 +18,7 @@ public class SpaceComplexityType {
     }
 
     /**
-     * 常数阶 - O(1)
+     * 常数阶 O(1)
      * 常数阶常见于数量与输入数据大小n无关的常量、变量、对象。
      * 需要注意的是，在循环过程中初始化变量或调用函数而占用的内存，在进入下一循环后就会被释放，既不会累积占用空间，空间复杂度仍然为O(1)。
      * 
@@ -42,7 +42,7 @@ public class SpaceComplexityType {
     }
 
     /**
-     * 线性阶 - O(n)
+     * 线性阶 O(n)
      * 线性阶常见于元素数量与n成正比的数组、链表、栈、队列等。
      * 
      * @param n
@@ -65,14 +65,47 @@ public class SpaceComplexityType {
     }
 
     /**
-     * 线性阶 - O(n) 循环实现
+     * 线性阶 O(n) - 循环实现
+     * 
      * @param n
      */
     public void linearRecur(int n) {
         System.out.println("递归 n = " + n);
-        if(n == 1) return;
+        if (n == 1)
+            return;
         linearRecur(n - 1);
     }
 
+    /**
+     * 平方阶 O(n²)
+     * 平方阶常见于元素数量与 n 成平方关系的矩阵、图。
+     * 
+     * @param n
+     */
+    public void quadratic(int n) {
+        // 矩阵占用 O(n^2) 空间
+        int[][] numMatrix = new int[n][n];
+        // 二维列表占用 O(n^2) 空间
+        List<List<Integer>> numList = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            List<Integer> temp = new ArrayList<>();
+            for (int j = 0; j < n; j++) {
+                temp.add(0);
+            }
+            numList.add(temp);
+        }
+    }
+
+    /**
+     * 平方阶 O(n²) - 递归实现
+     * @param n
+     */
+    public int quadraticRecur(int n) {
+        if (n < 0) return 0;
+        // 数组 nums 长度为 n,n-1,...,2,1
+        int[] nums = new int[n];
+        System.out.println("递归 n = " + n + " 中的 nums 长度 = " + nums.length);
+        return quadraticRecur(n - 1);
+    }
 
 }
