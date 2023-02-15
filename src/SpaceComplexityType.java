@@ -17,6 +17,16 @@ public class SpaceComplexityType {
         }
     }
 
+    private class TreeNode {
+        public int index;
+        public TreeNode left;
+        public TreeNode right;
+
+        TreeNode(int index) {
+            this.index = index;
+        }
+    }
+
     /**
      * 常数阶 O(1)
      * 常数阶常见于数量与输入数据大小n无关的常量、变量、对象。
@@ -98,14 +108,40 @@ public class SpaceComplexityType {
 
     /**
      * 平方阶 O(n²) - 递归实现
+     * 
      * @param n
      */
     public int quadraticRecur(int n) {
-        if (n < 0) return 0;
+        if (n < 0)
+            return 0;
         // 数组 nums 长度为 n,n-1,...,2,1
         int[] nums = new int[n];
         System.out.println("递归 n = " + n + " 中的 nums 长度 = " + nums.length);
         return quadraticRecur(n - 1);
+    }
+
+    /**
+     * 指数阶 O(2n)
+     * 指数阶常见于二叉树。高度为 n 的「满二叉树」的结点数量为 2n - 1 ，使用 O(2n) 空间。
+     * 
+     * @param n
+     * @return
+     */
+    public TreeNode buildTree(int n) {
+        if (n == 0)
+            return null;
+        TreeNode root = new TreeNode(0);
+        root.left = buildTree(n - 1);
+        root.right = buildTree(n - 1);
+        return root;
+    }
+
+    /**
+     * 对数阶 O(log n)
+     * 对数阶常见于分治算法、数据类型转换等。
+     * 例如「归并排序」，长度为 n 的数组可以形成高度为 log n 的递归树，因此空间复杂度为 O(log n) 。
+     */
+    public void logarithmic() {
     }
 
 }
