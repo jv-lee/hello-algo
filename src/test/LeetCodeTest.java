@@ -109,8 +109,22 @@ public class LeetCodeTest {
         // 21. 合并两个有序链表
         private class MergeTwoList {
 
+            public ListNode mergeTwoList2(ListNode l1, ListNode l2) {
+                if (l1 == null) {
+                    return l2;
+                } else if (l2 == null) {
+                    return l1;
+                } else if (l1.val < l2.val) {
+                    l1.next = mergeTwoList2(l1.next, l2);
+                    return l1;
+                } else {
+                    l2.next = mergeTwoList2(l1, l2.next);
+                    return l2;
+                }
+            }
+
             /// 迭代法
-            /// 时间复杂度 遍历次数为n O(n)
+            /// 时间复杂度 遍历次数为列表1n 列表2m O(n + m)
             /// 空间复杂度 使用了两个变量作为容器 所以为 O(1)
             public ListNode mergeTwoList(ListNode l1, ListNode l2) {
                 ListNode prehead = new ListNode(-1); // 作为头节点
@@ -157,6 +171,28 @@ public class LeetCodeTest {
 
                 // 返回-1的next，即为后续合并的链表
                 return prehead.next;
+            }
+        }
+
+        /// 876. 链表的中间结点
+        /// 返回中间节点，如果中间节点为两位返回后一位 
+        private class MiddleNode {
+            /// 使用快慢指针法
+            /// 时间复杂度 因为遍历所有的链表所以为 O(n)
+            /// 空间复杂度 因为只使用了两个指针变量为 O(1)
+            public ListNode middleNode(ListNode head) {
+                // 慢指针移动一位，快指针移动两位， 当快指针指向null时代表慢指针处于中间节点
+                // 边界条件 快指针为空或者快指针下一位为空则 停止循环返回慢指针 存在奇树偶数的差异
+                // [1,2,3,4,5]
+                // [1,2,3,4,5,6]
+                ListNode slow = head;
+                ListNode fast = head;
+
+                while(fast != null && fast.next != null) {
+                    slow = slow.next;
+                    fast = fast.next.next;
+                }
+                return slow;
             }
         }
     }
