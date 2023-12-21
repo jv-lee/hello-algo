@@ -1,6 +1,8 @@
 package test;
 
+import java.util.Deque;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Set;
 
 public class LeetCodeTest {
@@ -13,6 +15,7 @@ public class LeetCodeTest {
             public ListNode(int val) {
                 this.val = val;
             }
+            ListNode(int val, ListNode next) { this.val = val; this.next = next; }
         }
 
         // 206. 反转链表
@@ -174,8 +177,7 @@ public class LeetCodeTest {
             }
         }
 
-        /// 876. 链表的中间结点
-        /// 返回中间节点，如果中间节点为两位返回后一位 
+        /// 876. 链表的中间结点 返回中间节点，如果中间节点为两位返回后一位 
         private class MiddleNode {
             /// 使用快慢指针法
             /// 时间复杂度 因为遍历所有的链表所以为 O(n)
@@ -193,6 +195,57 @@ public class LeetCodeTest {
                     fast = fast.next.next;
                 }
                 return slow;
+            }
+        }
+    
+        /// 计算链表长度 
+        /// 时间复杂度为 链表的长度n O(n)
+        /// 空间复杂度为 三个临时变量 O(1)
+        private class RemoveNthFromEnd {
+
+            public ListNode removeNthFromEnd(ListNode head, int n) {
+                // 声明临时头节点 
+                ListNode tempHead = new ListNode(-1, head);
+
+                ListNode cur = head;
+                Deque<ListNode> stack = new LinkedList<ListNode>();
+                while (cur != null) {
+                    stack.push(cur);
+                    cur = cur.next;
+                }
+
+                for (int i = 0;i<n;i++) {
+                    stack.pop();
+                }
+
+                ListNode prev = stack.peek();
+                prev.next = prev.next.next;
+                return tempHead.next;
+            }
+
+
+            public ListNode removeNthFromEnd2(ListNode head, int n) {
+                // 保存头部临时节点
+                ListNode tempHead = new ListNode(-1, head);
+                // 获取当前链表长度
+                int length = getLength(head);
+
+                ListNode cur = head;
+                for (int i = 0; i < length - n;i++) {
+                    cur = cur.next;
+                }
+
+                cur.next = cur.next.next;
+                return tempHead.next;
+            }
+
+            public int getLength(ListNode head) {
+                int length = 0;
+                while (head != null) {
+                    length++;
+                    head = head.next;
+                }
+                return length;
             }
         }
     }

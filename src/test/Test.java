@@ -36,4 +36,31 @@ public class Test {
         return new int[0];
     }
 
+    public static int find(int[] a, int n, char key) {
+        if (a == null || n <= 0) {
+            return -1;
+        }
+
+        if (a[n -1] == key) {
+            return n - 1;
+        }
+
+        int tmp = a[n - 1];
+        a[n - 1] = key;
+
+        int i = 0;
+        while (a[i] != key) {
+            ++i;
+        }
+
+        a[n - 1] = tmp;
+
+        if (i == n - 1) {
+            return -1;
+        } else {
+            return i;
+        }
+
+    }
+
 }
