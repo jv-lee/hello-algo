@@ -95,15 +95,14 @@ public class LeetCodeTest {
                     return false;
                 }
 
-                ListNode f = head;
-                ListNode s = head.next;
-
-                while (f != null || s != null) {
-                    if (f == s) {
-                        return true;
+                ListNode s = head;
+                ListNode f = head.next;
+                while (s != f) {
+                    if (f == null || f.next == null) {
+                        return false;
                     }
-                    f = f.next;
-                    s = s.next.next;
+                    s = s.next;
+                    f = f.next.next;
                 }
                 return true;
             }
