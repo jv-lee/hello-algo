@@ -21,11 +21,6 @@ public class LeetCodeTest {
         // 206. 反转链表
         private class ReverseList {
 
-            public class ListNode {
-                int val;
-                ListNode next;
-            }
-
             /**
              * 迭代（双指针）
              * 
@@ -197,9 +192,7 @@ public class LeetCodeTest {
             }
         }
     
-        /// 计算链表长度 
-        /// 时间复杂度为 链表的长度n O(n)
-        /// 空间复杂度为 三个临时变量 O(1)
+        /// 19.删除链表的倒数第N个节点
         private class RemoveNthFromEnd {
 
             public ListNode removeNthFromEnd(ListNode head, int n) {
@@ -222,7 +215,9 @@ public class LeetCodeTest {
                 return tempHead.next;
             }
 
-
+            /// 计算链表长度法
+            /// 时间复杂度为 链表的长度n O(n)
+            /// 空间复杂度为 三个临时变量 O(1)
             public ListNode removeNthFromEnd2(ListNode head, int n) {
                 // 保存头部临时节点
                 ListNode tempHead = new ListNode(-1, head);
