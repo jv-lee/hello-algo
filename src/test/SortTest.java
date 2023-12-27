@@ -4,6 +4,9 @@ import java.util.Arrays;
 
 public class SortTest {
     public static void test() {
+        /// 冒泡排序 时间复杂度为 O(n2) ,空间复杂度为 O(1)
+        /// 插入排序 时间复杂度为 O(n2) ,空间复杂度为 O(1)
+        /// 插入排序优于冒泡排序，因为冒泡排序的数据移动1次需要进行3次数据付值，而插入排序的数据移动1次只需要1次付值
         bubbleSort();
         insetionSort();
     }
