@@ -1,5 +1,7 @@
 package practise;
 
+import java.util.List;
+
 import data.ListNode;
 
 public class LinkedList {
@@ -69,6 +71,21 @@ public class LinkedList {
         cur.next = list1 == null ? list2 : list1;
         return temphead.next;
     }
-    
+
+    /**
+     * 876. 链表的中间结点
+     * 使用双指针法
+     * 时间复杂度O(n) 链表的长度
+     * 空间复杂度O(1) 两个指针变量
+     */
+    public ListNode middleNode(ListNode head) {
+        ListNode s = head;
+        ListNode f = head;
+        while (f != null && f.next != null) {
+            s = s.next;
+            f = f.next.next;
+        }
+        return s;
+    }
 
 }
