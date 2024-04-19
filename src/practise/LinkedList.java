@@ -1,7 +1,5 @@
 package practise;
 
-import java.util.List;
-
 import data.ListNode;
 
 public class LinkedList {
@@ -87,5 +85,32 @@ public class LinkedList {
         }
         return s;
     }
+
+    /**
+     * 19. 删除链表的倒数第 N 个结点
+     * 使用长度比较法
+     * 时间复杂度O(n)
+     * 空间复杂度O(1)
+     */
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        int length = getLength(head);
+        ListNode temphead = new ListNode(-1, head);
+        ListNode cur = temphead;
+        for (int i = 0; i < length - n; i++) {
+            cur = cur.next;
+        }
+        cur.next = cur.next.next;
+        return temphead.next;
+    }
+
+    public int getLength(ListNode head) {
+        int length = 0;
+        while (head != null) {
+            length++;
+            head = head.next;
+        }
+        return length;
+    }
+
 
 }
