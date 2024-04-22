@@ -26,7 +26,7 @@ public class LinkedList {
     /**
      * 141. 环形链表
      * 使用快慢指针法
-     * 时间复杂度O(n) 链表的长度 
+     * 时间复杂度O(n) 链表的长度
      * 空间复杂度O(1) 使用两个指针变量
      */
     public boolean hasCycle(ListNode head) {
@@ -112,5 +112,32 @@ public class LinkedList {
         return length;
     }
 
+    /**
+     * 61. 旋转链表
+     * 使用合并成环打断法
+     * 时间复杂度O(n) 最坏情况下需要遍历链表2次
+     * 空间复杂度O(1)
+     */
+    public ListNode rotateRight(ListNode head, int k) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        int n = 1;
+        ListNode cur = head;
+        while (cur.next != null) {
+            n++;
+            cur = cur.next;
+        }
+        cur.next = head;
+
+        int move = n - k % n;
+        while (move-- > 0) {
+            cur = cur.next;
+        }
+        ListNode result = cur.next;
+        cur.next = null;
+        return result;
+    }
 
 }
