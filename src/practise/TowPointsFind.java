@@ -9,6 +9,16 @@ public class TowPointsFind {
         return false;
     }
 
+    class MountainArray {
+        public int get(int index) {
+            return -1;
+        }
+
+        public int length() {
+            return -1;
+        }
+    }
+
     /// 704. 二分查找
     /// 时间复杂度O(logN)
     /// 空间复杂度O(1)
@@ -227,6 +237,52 @@ public class TowPointsFind {
         while (left < right) {
             int mid = left + (right - left) / 2;
             if (arr[mid] > arr[mid + 1]) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return left;
+    }
+
+    /// 1095. 山脉数组中查找目标值
+    /// 时间复杂度 O(LogN)
+    /// 空间复杂度 O(1)
+    public int findInMountainArray(int target, MountainArray mountainArr) {
+        int maxIndex = findMaxIndex(mountainArr);
+        int left = 0;
+        int right = maxIndex;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (mountainArr.get(mid) < target) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+        if (mountainArr.get(left) == target) {
+            return left;
+        }
+
+        left = maxIndex + 1;
+        right = mountainArr.length() - 1;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (mountainArr.get(mid) > target) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+        return mountainArr.get(left) == target ? left : -1;
+    }
+
+    public int findMaxIndex(MountainArray mountainArr) {
+        int left = 0;
+        int right = mountainArr.length() - 1;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (mountainArr.get(mid) > mountainArr.get(mid + 1)) {
                 right = mid;
             } else {
                 left = mid + 1;
