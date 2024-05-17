@@ -291,4 +291,23 @@ public class TowPointsFind {
         return left;
     }
 
+    /// 69. x 的平方根
+    /// 时间复杂度 O(logN)
+    /// 空间复杂度 O(1)
+    public int mySqrt(int x) {
+        int left = 0;
+        int right = x;
+        int pos = -1;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if ((long) mid * mid <= x) {
+                left = mid + 1;
+                pos = mid;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return pos;
+    }
+
 }
