@@ -72,4 +72,20 @@ public class Sort {
         return new int[] { 1 };
     }
 
+    /// 283. 移动零
+    public void moveZeroes(int[] nums) {
+        int n = nums.length;
+        int left = 0;
+        int right = 0;
+        while (right < n) {
+            if (nums[right] > nums[left]) {
+                int temp = nums[left];
+                nums[left] = nums[right];
+                nums[right] = temp;
+                left++;
+            }
+            right++;
+        }
+    }
+
 }
