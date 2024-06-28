@@ -124,4 +124,24 @@ public class Sort {
         }
     }
 
+    /// 154. 寻找旋转排序数组中的最小值 II
+    public int findMin2(int[] nums) {
+        return findMin2(nums, 0, nums.length - 1);
+    }
+
+    public int findMin2(int[] nums, int left, int right) {
+        if (left == right) {
+            return nums[left];
+        }
+
+        int mid = left + (right - left) / 2;
+        if (nums[mid] == nums[right]) {
+            return findMin2(nums, left, --right);
+        } else if (nums[mid] > nums[right]) {
+            return findMin2(nums, mid + 1, right);
+        } else {
+            return findMin2(nums, left, mid);
+        }
+    }
+
 }
