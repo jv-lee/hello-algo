@@ -161,4 +161,24 @@ public class Sort {
         return ++left;
     }
 
+    /// 80. 删除有序数组中的重复项 II
+    public int removeDuplicates(int[] nums) {
+        int n = nums.length;
+        if (n < 2) {
+            return n;
+        }
+        int left = 2;
+        int right = 2;
+        while (right < n) {
+            if (nums[right] > nums[left - 2]) {
+                int temp = nums[left];
+                nums[left] = nums[right];
+                nums[right] = temp;
+                left++;
+            }
+            right++;
+        }
+        return left;
+    }
+
 }
