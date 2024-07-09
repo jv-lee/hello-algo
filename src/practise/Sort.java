@@ -162,7 +162,7 @@ public class Sort {
     }
 
     /// 80. 删除有序数组中的重复项 II
-    public int removeDuplicates(int[] nums) {
+    public int removeDuplicates2(int[] nums) {
         int n = nums.length;
         if (n < 2) {
             return n;
