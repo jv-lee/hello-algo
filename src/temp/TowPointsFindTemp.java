@@ -190,18 +190,93 @@ public class TowPointsFindTemp {
     /// The isBadVersion API is defined in the parent class VersionControl. boolean
     /// isBadVersion(int version);
     public int firstBadVersion(int n) {
+        int left = 0;
+        int right = n;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (isBadVersion(mid)) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return left;
     }
 
     /// LCR 069. 山脉数组的峰顶索引
     public int peakIndexInMountainArray(int[] arr) {
+        int left = 0;
+        int right = arr.length - 1;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (arr[mid] > arr[mid + 1]) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return left;
     }
 
     /// 1095. 山脉数组中查找目标值
     public int findInMountainArray(int target, MountainArray mountainArr) {
+        int maxIndex = findMaxIndex(mountainArr);
+        int left = 0;
+        int right = maxIndex;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (mountainArr.get(mid) < target) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+        if (mountainArr.get(left) == target) {
+            return left;
+        }
+
+        left = maxIndex + 1;
+        right = mountainArr.length() - 1;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (mountainArr.get(mid) > target) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+        return mountainArr.get(left) == target ? left : -1;
+    }
+
+    public int findMaxIndex(MountainArray mountainArr) {
+        int left = 0;
+        int right = mountainArr.length() - 1;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (mountainArr.get(mid) > mountainArr.get(mid + 1)) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return left;
     }
 
     /// 69. x 的平方根
     public int mySqrt(int x) {
+        int left = 0;
+        int right = x;
+        int pos = -1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if ((long) mid * mid <= x) {
+                left = mid + 1;
+                pos = mid;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return pos;
     }
 
 }
